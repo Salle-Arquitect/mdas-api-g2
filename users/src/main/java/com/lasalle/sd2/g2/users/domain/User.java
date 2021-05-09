@@ -1,5 +1,7 @@
 package com.lasalle.sd2.g2.users.domain;
 
+import com.lasalle.sd2.g2.users.domain.exceptions.PokemonAlreadyFavoriteException;
+
 public class User {
 
     private final UserId id;
@@ -18,7 +20,7 @@ public class User {
         return id;
     }
 
-    public void addFavoritePokemon(Pokemon pokemon) {
+    public void addFavoritePokemon(Pokemon pokemon) throws PokemonAlreadyFavoriteException {
         favorites.add(pokemon);
     }
 }

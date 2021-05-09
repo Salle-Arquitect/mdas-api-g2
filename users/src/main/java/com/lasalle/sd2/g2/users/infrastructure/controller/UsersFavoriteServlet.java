@@ -2,9 +2,10 @@ package com.lasalle.sd2.g2.users.infrastructure.controller;
 
 import com.google.gson.Gson;
 import com.lasalle.sd2.g2.users.application.AddFavoritePokemon;
-import com.lasalle.sd2.g2.users.domain.exceptions.UserNotFoundException;
 import com.lasalle.sd2.g2.users.application.dto.AddFavoritePokemonRequestBody;
 import com.lasalle.sd2.g2.users.application.dto.GenericErrorResponseBody;
+import com.lasalle.sd2.g2.users.domain.exceptions.PokemonAlreadyFavoriteException;
+import com.lasalle.sd2.g2.users.domain.exceptions.UserNotFoundException;
 import com.lasalle.sd2.g2.users.infrastructure.repository.InMemoryUsersRepository;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -32,7 +33,7 @@ public class UsersFavoriteServlet extends HttpServlet {
         try {
             addFavoritePokemon.execute(userId, requestBody);
             resp.setStatus(HttpServletResponse.SC_CREATED);
-        } catch (UserNotFoundException e) {
+        } catch (UserNotFoundException | PokemonAlreadyFavoriteException e) {
             GenericErrorResponseBody responseBody = new GenericErrorResponseBody(e.getMessage());
             resp.getWriter().println(new Gson().toJson(responseBody));
             resp.setContentType("application/json");

@@ -2,6 +2,7 @@ package com.lasalle.sd2.g2.users.application;
 
 import com.lasalle.sd2.g2.users.application.dto.AddFavoritePokemonRequestBody;
 import com.lasalle.sd2.g2.users.domain.User;
+import com.lasalle.sd2.g2.users.domain.exceptions.PokemonAlreadyFavoriteException;
 import com.lasalle.sd2.g2.users.domain.exceptions.UserNotFoundException;
 import com.lasalle.sd2.g2.users.domain.UsersRepository;
 import org.junit.jupiter.api.Test;
@@ -34,7 +35,7 @@ class AddFavoritePokemonTest {
     }
 
     @Test
-    void executeAddedSuccessfully() throws UserNotFoundException {
+    void executeAddedSuccessfully() throws UserNotFoundException, PokemonAlreadyFavoriteException {
         when(repository.findByUserId(any())).thenReturn(user);
         doNothing().when(repository).save(user);
 

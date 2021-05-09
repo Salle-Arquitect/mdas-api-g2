@@ -1,5 +1,6 @@
 package com.lasalle.sd2.g2.users.domain;
 
+import com.lasalle.sd2.g2.users.domain.exceptions.PokemonAlreadyFavoriteException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
@@ -26,7 +27,7 @@ class UserTest {
     }
 
     @Test
-    void addFavoritePokemon() {
+    void addFavoritePokemon() throws PokemonAlreadyFavoriteException {
         User user = new User(UserId.create(), favoritePokemons);
         user.addFavoritePokemon(pokemon);
 

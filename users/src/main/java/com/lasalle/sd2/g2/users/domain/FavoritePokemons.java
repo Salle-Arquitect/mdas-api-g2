@@ -1,5 +1,7 @@
 package com.lasalle.sd2.g2.users.domain;
 
+import com.lasalle.sd2.g2.users.domain.exceptions.PokemonAlreadyFavoriteException;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -15,8 +17,10 @@ public class FavoritePokemons {
         return new FavoritePokemons(new HashSet<>());
     }
 
-    public void add(Pokemon pokemon) {
-        pokemons.add(pokemon);
+    public void add(Pokemon pokemon) throws PokemonAlreadyFavoriteException {
+        if (!pokemons.add(pokemon)) {
+            throw new PokemonAlreadyFavoriteException("The pokemon " + pokemon.getId().toString() + " is already favorite");
+        }
     }
 
 }
