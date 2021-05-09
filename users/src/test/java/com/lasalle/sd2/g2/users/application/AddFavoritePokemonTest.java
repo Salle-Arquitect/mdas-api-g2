@@ -20,30 +20,30 @@ import static org.mockito.Mockito.*;
 class AddFavoritePokemonTest {
 
     @Mock
-    private UsersRepository repository;
+    private UsersRepository usersRepository;
 
     @Mock
     private User user;
 
     @Test
     void executeThrowsUserNotFoundException() throws UserNotFoundException {
-        when(repository.findByUserId(any())).thenThrow(UserNotFoundException.class);
+        when(usersRepository.findByUserId(any())).thenThrow(UserNotFoundException.class);
 
         AddFavoritePokemonRequestBody requestBody = new AddFavoritePokemonRequestBody(1);
-        AddFavoritePokemon addFavoritePokemon = new AddFavoritePokemon(repository);
+        AddFavoritePokemon addFavoritePokemon = new AddFavoritePokemon(usersRepository);
         assertThrows(UserNotFoundException.class, () -> addFavoritePokemon.execute(UUID.randomUUID().toString(), requestBody));
     }
 
     @Test
     void executeAddedSuccessfully() throws UserNotFoundException, PokemonAlreadyFavoriteException {
-        when(repository.findByUserId(any())).thenReturn(user);
-        doNothing().when(repository).save(user);
+        when(usersRepository.findByUserId(any())).thenReturn(user);
+        doNothing().when(usersRepository).save(user);
 
         AddFavoritePokemonRequestBody requestBody = new AddFavoritePokemonRequestBody(123);
-        AddFavoritePokemon addFavoritePokemon = new AddFavoritePokemon(repository);
+        AddFavoritePokemon addFavoritePokemon = new AddFavoritePokemon(usersRepository);
 
         addFavoritePokemon.execute(UUID.randomUUID().toString(), requestBody);
 
-        verify(repository, times(1)).save(any());
+        verify(usersRepository, times(1)).save(any());
     }
 }

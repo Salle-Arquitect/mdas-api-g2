@@ -14,13 +14,16 @@ public class AddFavoritePokemon {
 
     private final UsersRepository repository;
 
-    public AddFavoritePokemon(UsersRepository repository) {
-        this.repository = repository;
+    public AddFavoritePokemon(UsersRepository user) {
+        repository = user;
     }
 
     public void execute(String userId, AddFavoritePokemonRequestBody requestBody) throws UserNotFoundException, PokemonAlreadyFavoriteException {
         User user = repository.findByUserId(new UserId(UUID.fromString(userId)));
-        user.addFavoritePokemon(new Pokemon(requestBody.getPokemonId()));
+
+        Pokemon pokemon = new Pokemon(requestBody.getPokemonId());
+        user.addFavoritePokemon(pokemon);
+
         repository.save(user);
     }
 }
