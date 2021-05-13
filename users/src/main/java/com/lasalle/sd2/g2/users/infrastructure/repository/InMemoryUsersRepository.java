@@ -2,11 +2,10 @@ package com.lasalle.sd2.g2.users.infrastructure.repository;
 
 import com.lasalle.sd2.g2.users.domain.User;
 import com.lasalle.sd2.g2.users.domain.UserId;
-import com.lasalle.sd2.g2.users.domain.exceptions.UserNotFoundException;
 import com.lasalle.sd2.g2.users.domain.UsersRepository;
+import com.lasalle.sd2.g2.users.domain.exceptions.UserNotFoundException;
 
 import java.util.Map;
-import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class InMemoryUsersRepository implements UsersRepository {
@@ -20,12 +19,11 @@ public class InMemoryUsersRepository implements UsersRepository {
 
     @Override
     public User findByUserId(UserId userId) throws UserNotFoundException {
-        User user = USER_MAP.get(userId.toString());
-
-        if (Objects.isNull(user)) {
-            throw new UserNotFoundException("User " + userId + " not found");
+        String id = userId.toString();
+        if (!USER_MAP.containsKey(id)) {
+            throw new UserNotFoundException("User " + id + " not found");
         }
 
-        return user;
+        return USER_MAP.get(id);
     }
 }
