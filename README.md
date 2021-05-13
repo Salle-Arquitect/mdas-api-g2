@@ -49,7 +49,7 @@ The response body will contain the userId created. This value will be stored in 
 in other requests.
 
 ### Add favorite pokemon
-Execute "Add favorite pokemon" in the postman application. This request contains the header "user_id" that contains the
+Execute "Add favorite pokemon" in the postman application. This request contains the header `user_id` that contains the
 user identifier generated in the last execution of "Create user".
 
 The expected response is 201 code. It can also return a 404 code, and a JSON with the message that the user was not found.
