@@ -1,6 +1,7 @@
 package com.lasalle.sd2.g2.users.infrastructure.controller;
 
 import com.google.gson.Gson;
+import com.lasalle.sd2.g2.pokemons.infrastructure.repository.InMemoryFavoriteRepository;
 import com.lasalle.sd2.g2.users.application.AddFavoritePokemon;
 import com.lasalle.sd2.g2.users.application.dto.AddFavoritePokemonRequestBody;
 import com.lasalle.sd2.g2.users.application.dto.GenericErrorResponseBody;
@@ -22,7 +23,7 @@ public class UsersFavoriteServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        AddFavoritePokemon addFavoritePokemon = new AddFavoritePokemon(new InMemoryUsersRepository());
+        AddFavoritePokemon addFavoritePokemon = new AddFavoritePokemon(new InMemoryUsersRepository(), new InMemoryFavoriteRepository());
 
         String userId = req.getHeader(USER_ID_HEADER);
         BufferedReader reader = req.getReader();
