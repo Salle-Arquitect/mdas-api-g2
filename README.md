@@ -26,6 +26,30 @@ Note: same as executing with terminal, but instead of `<PokemonId>` use `server`
 In order to test the endpoints, you can import the postman [collection](/docs/Disseny2.postman_collection.json)
 and [environment](/docs/Disseny2.postman_environment.json) that are found in the docs folder.
 
+### Execute tests
+The first time works well
+```bash
+./acceptanceTest.sh
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100    78  100    78    0     0     45      0  0:00:01  0:00:01 --:--:--    45
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100    50  100    50    0     0   8333      0 --:--:-- --:--:-- --:--:--  8333
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100    78  100    78    0     0    189      0 --:--:-- --:--:-- --:--:--   189
+```
+
+And the second time you have a error:
+```bash
+./acceptanceTest.sh
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100    78  100    78    0     0    176      0 --:--:-- --:--:-- --:--:--   176
+Expected: {"id":42,"name":"golbat","types":["poison","flying"],"timesMarkedFavorite":0}, but is {"id":42,"name":"golbat","types":["poison","flying"],"timesMarkedFavorite":1}
+```
+
 ## Types module
 Execute "Get Pokemon Types" in the postman application. You can change the pokemon to search by modifying the last
 parameter of the URI. For example:
