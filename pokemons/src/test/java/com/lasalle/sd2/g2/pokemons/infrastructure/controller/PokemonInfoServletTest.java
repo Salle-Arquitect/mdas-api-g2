@@ -25,7 +25,7 @@ import static org.mockserver.model.HttpResponse.response;
 
 class PokemonInfoServletTest {
 
-    private static final String ID_15_POKEMON_INFO = "{\"id\":15,\"name\":\"beedrill\",\"types\":[\"bug\",\"poison\"]}";
+    private static final String ID_15_POKEMON_INFO = "{\"id\":15,\"name\":\"beedrill\",\"types\":[\"bug\",\"poison\"],\"timesMarkedFavorite\":0}";
     private static final String POKEMON_INFO_NOT_FOUND = "{\"message\":\"Pokemon not found\"}";
     private static final String POKEAPI_ERROR = "{\"message\":\"Service unavailable\"}";
 

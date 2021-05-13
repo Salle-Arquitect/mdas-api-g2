@@ -16,6 +16,6 @@ public class GetPokemonDetails {
     public PokemonDetailsResponse execute(Integer id) {
         PokemonId pokemonId = new PokemonId(id);
         PokemonDetails pokemonDetails = repository.getPokemonDetails(pokemonId);
-        return new PokemonDetailsResponse(pokemonDetails.getId(), pokemonDetails.getName(), pokemonDetails.getTypes());
+        return new PokemonDetailsResponse(pokemonDetails.getId(), pokemonDetails.getName(), pokemonDetails.getTypes(), pokemonDetails.getTimesMarkedFavorite());
     }
 }

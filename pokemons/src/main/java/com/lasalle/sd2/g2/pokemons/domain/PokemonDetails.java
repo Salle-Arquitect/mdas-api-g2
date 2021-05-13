@@ -8,11 +8,13 @@ public class PokemonDetails {
     private final PokemonId id;
     private final PokemonName name;
     private final PokemonTypes types;
+    private final PokemonFavoriteRepository favorite;
 
-    public PokemonDetails(Integer id, String name, List<String> types) {
+    public PokemonDetails(Integer id, String name, List<String> types, PokemonFavoriteRepository pokemonFavoriteRepository) {
         this.id = new PokemonId(id);
         this.name = new PokemonName(name);
         this.types = new PokemonTypes(types);
+        this.favorite = pokemonFavoriteRepository;
     }
 
     public Integer getId() {
@@ -26,6 +28,8 @@ public class PokemonDetails {
     public List<String> getTypes() {
         return types.getTypes();
     }
+
+    public Long getTimesMarkedFavorite() { return favorite.getValue(id); }
 
     @Override
     public boolean equals(Object o) {

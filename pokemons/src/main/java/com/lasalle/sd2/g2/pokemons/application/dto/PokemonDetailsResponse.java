@@ -10,11 +10,13 @@ public class PokemonDetailsResponse implements Serializable {
     private final Integer id;
     private final String name;
     private final List<String> types;
+    private final Long timesMarkedFavorite;
 
-    public PokemonDetailsResponse(Integer id, String name, List<String> types) {
+    public PokemonDetailsResponse(Integer id, String name, List<String> types, Long timesMarkedFavorite) {
         this.id = id;
         this.name = name;
         this.types = types;
+        this.timesMarkedFavorite = timesMarkedFavorite;
     }
 
     public Integer getId() {
@@ -28,4 +30,6 @@ public class PokemonDetailsResponse implements Serializable {
     public List<String> getTypes() {
         return types;
     }
+
+    public Long getTimesMarkedFavorite() { return timesMarkedFavorite; }
 }

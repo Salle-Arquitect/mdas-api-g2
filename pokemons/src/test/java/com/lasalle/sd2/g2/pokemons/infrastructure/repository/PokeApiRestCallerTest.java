@@ -45,7 +45,7 @@ class PokeApiRestCallerTest {
         pokemonTypesList.add("bug");
         pokemonTypesList.add("poison");
 
-        PokemonDetails pokemonTypesExpected = new PokemonDetails(15, "beedrill", pokemonTypesList);
+        PokemonDetails pokemonTypesExpected = new PokemonDetails(15, "beedrill", pokemonTypesList, new InMemoryFavoriteRepository());
         PokeApiRestCaller restCaller = new PokeApiRestCaller();
 
         new MockServerClient("localhost", mockServer.getLocalPort())

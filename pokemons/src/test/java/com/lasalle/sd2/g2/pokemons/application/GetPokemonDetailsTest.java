@@ -3,6 +3,7 @@ package com.lasalle.sd2.g2.pokemons.application;
 import com.lasalle.sd2.g2.pokemons.application.dto.PokemonDetailsResponse;
 import com.lasalle.sd2.g2.pokemons.domain.PokemonDetails;
 import com.lasalle.sd2.g2.pokemons.domain.PokemonRepository;
+import com.lasalle.sd2.g2.pokemons.infrastructure.repository.InMemoryFavoriteRepository;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -22,7 +23,7 @@ class GetPokemonDetailsTest {
         List<String> types = new ArrayList<>();
         types.add("bug");
         types.add("poison");
-        PokemonDetails pokemonDetails = new PokemonDetails(15, "beedrill", types);
+        PokemonDetails pokemonDetails = new PokemonDetails(15, "beedrill", types, new InMemoryFavoriteRepository());
 
         when(repository.getPokemonDetails(any())).thenReturn(pokemonDetails);
 
@@ -33,5 +34,6 @@ class GetPokemonDetailsTest {
         assertEquals(15, response.getId());
         assertEquals("beedrill", response.getName());
         assertEquals(types, response.getTypes());
+        assertEquals(0, response.getTimesMarkedFavorite());
     }
 }
